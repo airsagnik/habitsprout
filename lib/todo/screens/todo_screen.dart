@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/core/task_manager/reward_manager.dart';
 import 'package:habitsprout/core/task_manager/todo_manager.dart';
+import 'package:habitsprout/core/widgets/appbar.dart';
 import 'package:habitsprout/rewards/widgets/coin_display.dart';
 import 'package:habitsprout/todo/widgets/todo_card.dart';
 import 'package:provider/provider.dart';
@@ -13,19 +14,12 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TODO'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true).pushNamed(
-                "/addtodo",
-              );
-            },
-            child: Text("add Todo"),
-          ),
-          CoinDisplay(),
-        ],
+      appBar: getAppBar(
+        'Add Todo',
+        () {
+          Navigator.of(context, rootNavigator: true).pushNamed("/addtodo");
+        },
+        CoinDisplay(),
       ),
       body: Consumer<TodoManager>(
         builder: (context, data, child) => data.todo.isEmpty

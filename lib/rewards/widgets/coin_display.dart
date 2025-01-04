@@ -8,13 +8,22 @@ class CoinDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<RewardManager>(
-      builder: (context,data,child) => Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Icon(Icons.currency_bitcoin),
-          Text(data.habitoCoins.toString()),
-        ],
+      builder: (context, data, child) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            const Icon(Icons.monetization_on, color: Colors.amber),
+            const SizedBox(width: 4),
+            Text(
+              data.habitoCoins.toString(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

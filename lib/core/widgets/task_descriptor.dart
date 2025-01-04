@@ -19,6 +19,7 @@ class TaskDescriptor extends StatelessWidget {
             title,
             softWrap: true,
             style: TextStyle(color: Colors.white,fontSize: 15),
+
           ),
           if (description != null)
             Text(

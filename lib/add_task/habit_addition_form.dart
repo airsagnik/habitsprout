@@ -6,6 +6,8 @@ import 'package:habitsprout/core/task_manager/habit_manager.dart';
 import 'package:habitsprout/habits/model/habit_model.dart';
 import 'package:provider/provider.dart';
 
+import '../core/widgets/appbar.dart';
+
 class HabitAdditionForm extends StatefulWidget {
   const HabitAdditionForm({super.key});
 
@@ -40,120 +42,171 @@ class _HabitAdditionFormState extends State<HabitAdditionForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Task'),
-        actions: [
-          TextButton(
-              onPressed: () {
-                onSubmit();
-              },
-              child: Text("add Habit"))
-        ],
-      ),
+      appBar: getAppBar('Add Habit', onSubmit, null),
       body: Form(
         key: formKey,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              controller: titleController,
-              decoration: InputDecoration(
-                labelText: 'Task Title',
-                border: OutlineInputBorder(), // Optional: Adds a border
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              controller: notesController,
-              decoration: InputDecoration(
-                labelText: 'Notes',
-                border: OutlineInputBorder(), // Optional: Adds a border
+              TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.blueAccent,
+                      width: 2,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.purple,
+                      width: 2,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.edit,
+                    color: Colors.blue,
+                  ),
+
+                  labelText: 'Task Title',
+                  border: OutlineInputBorder(), // Optional: Adds a border
+                ),
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            ValueListenableBuilder<HabitType>(
-              builder: (context, data, child) => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  HabitNatureSelector(
-                    label: 'positive',
-                    icon: Icons.add,
-                    assignedType: HabitType.positive,
-                    selectedType: data,
-                    onTap: () {
-                      habitNature.value = HabitType.positive;
-                    },
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  HabitNatureSelector(
-                    label: 'negative',
-                    icon: Icons.accessibility,
-                    assignedType: HabitType.negative,
-                    selectedType: data,
-                    onTap: () {
-                      habitNature.value = HabitType.negative;
-                    },
-                  ),
-                ],
+              SizedBox(
+                height: 16,
               ),
-              valueListenable: habitNature,
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            ValueListenableBuilder<DifficultyLevel>(
-              valueListenable: difficulty,
-              builder: (context, data, child) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DifficultyContainer(
-                    level: 'Trivial',
-                    icon: Icons.ac_unit,
-                    assignedDifficulty: DifficultyLevel.trivial,
-                    selectedDifficulty: data,
-                    onTap: () {
-                      difficulty.value = DifficultyLevel.trivial;
-                    },
+              TextFormField(
+                controller: notesController,
+                decoration: InputDecoration(
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
                   ),
-                  DifficultyContainer(
-                    level: 'Easy',
-                    icon: Icons.verified_outlined,
-                    assignedDifficulty: DifficultyLevel.easy,
-                    selectedDifficulty: data,
-                    onTap: () {
-                      difficulty.value = DifficultyLevel.easy;
-                    },
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.blueAccent,
+                      width: 2,
+                    ),
                   ),
-                  DifficultyContainer(
-                    level: 'Medium',
-                    icon: Icons.brightness_medium,
-                    assignedDifficulty: DifficultyLevel.medium,
-                    selectedDifficulty: data,
-                    onTap: () {
-                      difficulty.value = DifficultyLevel.medium;
-                    },
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.purple,
+                      width: 2,
+                    ),
                   ),
-                  DifficultyContainer(
-                    level: 'Hard',
-                    icon: Icons.alarm,
-                    assignedDifficulty: DifficultyLevel.hard,
-                    selectedDifficulty: data,
-                    onTap: () {
-                      difficulty.value = DifficultyLevel.hard;
-                    },
-                  )
-                ],
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.notes,
+                    color: Colors.blue,
+                  ),
+
+                  labelText: 'Notes',
+                  border: OutlineInputBorder(), // Optional: Adds a border
+                ),
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),              ),
+              SizedBox(
+                height: 16,
               ),
-            )
-          ],
+              ValueListenableBuilder<HabitType>(
+                builder: (context, data, child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HabitNatureSelector(
+                      label: 'positive',
+                      icon: Icons.add,
+                      assignedType: HabitType.positive,
+                      selectedType: data,
+                      onTap: () {
+                        habitNature.value = HabitType.positive;
+                      },
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    HabitNatureSelector(
+                      label: 'negative',
+                      icon: Icons.accessibility,
+                      assignedType: HabitType.negative,
+                      selectedType: data,
+                      onTap: () {
+                        habitNature.value = HabitType.negative;
+                      },
+                    ),
+                  ],
+                ),
+                valueListenable: habitNature,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              ValueListenableBuilder<DifficultyLevel>(
+                valueListenable: difficulty,
+                builder: (context, data, child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DifficultyContainer(
+                      level: 'Trivial',
+                      icon: Icons.ac_unit,
+                      assignedDifficulty: DifficultyLevel.trivial,
+                      selectedDifficulty: data,
+                      onTap: () {
+                        difficulty.value = DifficultyLevel.trivial;
+                      },
+                    ),
+                    DifficultyContainer(
+                      level: 'Easy',
+                      icon: Icons.verified_outlined,
+                      assignedDifficulty: DifficultyLevel.easy,
+                      selectedDifficulty: data,
+                      onTap: () {
+                        difficulty.value = DifficultyLevel.easy;
+                      },
+                    ),
+                    DifficultyContainer(
+                      level: 'Medium',
+                      icon: Icons.brightness_medium,
+                      assignedDifficulty: DifficultyLevel.medium,
+                      selectedDifficulty: data,
+                      onTap: () {
+                        difficulty.value = DifficultyLevel.medium;
+                      },
+                    ),
+                    DifficultyContainer(
+                      level: 'Hard',
+                      icon: Icons.alarm,
+                      assignedDifficulty: DifficultyLevel.hard,
+                      selectedDifficulty: data,
+                      onTap: () {
+                        difficulty.value = DifficultyLevel.hard;
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

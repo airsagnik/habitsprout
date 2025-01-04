@@ -32,7 +32,7 @@ class DifficultyContainer extends StatelessWidget {
                   : Colors.purple,
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: Icon(icon),
+            child: Icon(icon,color: Colors.white,),
           ),
           SizedBox(
             height: 5,

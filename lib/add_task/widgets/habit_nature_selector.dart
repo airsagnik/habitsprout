@@ -27,7 +27,7 @@ class HabitNatureSelector extends StatelessWidget {
             backgroundColor: selectedType == assignedType
                 ? Colors.purple.shade200
                 : Colors.purple,
-            child: Icon(icon),
+            child: Icon(icon,color: Colors.white,),
           ),
           SizedBox(
             height: 5,

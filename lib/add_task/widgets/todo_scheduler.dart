@@ -59,10 +59,38 @@ class _TodoSchedulerState extends State<TodoScheduler> {
     return TextFormField(
       controller: _dateTimeController,
       readOnly: true,
-      decoration: const InputDecoration(
-        labelText: 'Due date and time',
-        border: OutlineInputBorder(),
-        suffixIcon: Icon(Icons.calendar_today),
+      decoration: InputDecoration(
+        hintStyle: const TextStyle(
+          color: Colors.grey,
+          fontSize: 16,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            color: Colors.blueAccent,
+            width: 2,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            color: Colors.purple,
+            width: 2,
+          ),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+        prefixIcon: const Icon(
+          Icons.date_range,
+          color: Colors.blue,
+        ),
+
+        labelText: 'Due Date',
+        border: OutlineInputBorder(), // Optional: Adds a border
+      ),
+      style: const TextStyle(
+        fontSize: 16,
+        color: Colors.black,
       ),
       onTap: () {
         if (mounted) {
