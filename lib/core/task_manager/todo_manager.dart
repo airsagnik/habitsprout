@@ -11,5 +11,8 @@ class TodoManager extends ChangeNotifier {
 
   void fetchTodo() {}
 
-  void dismissTodo() {}
+  void dismissTodo(TodoModel model) {
+    todo.remove(model);
+    notifyListeners();
+  }
 }

@@ -9,16 +9,19 @@ class RewardManager extends ChangeNotifier {
   void addPositiveHabitCoins(HabitModel habit) {
     habitoCoins =
         habitoCoins + (5 * getDifficultyOffset(habit.difficultyLevel));
+    notifyListeners();
   }
 
   void removeNegativeHabitCoins(HabitModel habit) {
     habitoCoins =
         habitoCoins - (5 * getDifficultyOffset(habit.difficultyLevel));
+    notifyListeners();
   }
 
   void todoCompletePoints(TodoModel model) {
     habitoCoins =
         habitoCoins + (10 * getDifficultyOffset(model.difficultyLevel));
+    notifyListeners();
   }
 
   double getDifficultyOffset(DifficultyLevel difficultyLevel) {

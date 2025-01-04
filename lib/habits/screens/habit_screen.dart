@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/core/task_manager/habit_manager.dart';
 import 'package:habitsprout/core/widgets/bottom_nav_bar.dart';
+import 'package:habitsprout/rewards/widgets/coin_display.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/habit_card.dart';
@@ -21,7 +22,8 @@ class HabitScreen extends StatelessWidget {
               );
             },
             child: Text("add habit"),
-          )
+          ),
+          CoinDisplay(),
         ],
       ),
       body: Consumer<HabitManager>(

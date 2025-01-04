@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/core/task_manager/reward_manager.dart';
 import 'package:habitsprout/core/task_manager/todo_manager.dart';
+import 'package:habitsprout/rewards/widgets/coin_display.dart';
 import 'package:habitsprout/todo/widgets/todo_card.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,8 @@ class TodoScreen extends StatelessWidget {
               );
             },
             child: Text("add Todo"),
-          )
+          ),
+          CoinDisplay(),
         ],
       ),
       body: Consumer<TodoManager>(

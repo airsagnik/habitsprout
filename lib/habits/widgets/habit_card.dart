@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart.';
+import 'package:habitsprout/core/task_manager/reward_manager.dart';
 import 'package:habitsprout/habits/model/habit_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/widgets/task_action.dart';
 import '../../core/widgets/task_descriptor.dart';
@@ -12,20 +14,25 @@ class HabitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
+        padding: EdgeInsets.only(top: 10),
         child: IntrinsicHeight(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TaskAction(
-                color: Colors.yellow,
+                color: Colors.orangeAccent,
                 applyBorderRadiusOnLeft: true,
-                child: Icon(Icons.add),
-                onPressed: () {},
-              ),
-              SizedBox(
-                width: 5,
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  if (model.habitType == HabitType.positive) {
+                    Provider.of<RewardManager>(context,listen: false)
+                        .addPositiveHabitCoins(model);
+                  }
+                },
               ),
               Expanded(
                 child: TaskDescriptor(
@@ -34,9 +41,17 @@ class HabitCard extends StatelessWidget {
                     description: model.description),
               ),
               TaskAction(
-                color: Colors.yellow,
-                child: Icon(Icons.home_mini_sharp),
-                onPressed: () {},
+                color: Colors.orangeAccent,
+                child: Icon(
+                  Icons.home_mini_sharp,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  if (model.habitType == HabitType.negative) {
+                    Provider.of<RewardManager>(context,listen: false)
+                        .removeNegativeHabitCoins(model);
+                  }
+                },
               ),
             ],
           ),

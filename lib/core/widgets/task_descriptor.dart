@@ -9,20 +9,26 @@ class TaskDescriptor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          softWrap: true,
-        ),
-        if (description != null)
+    return Container(
+      color: Colors.black54,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Text(
-            description!,
+            title,
             softWrap: true,
+            style: TextStyle(color: Colors.white,fontSize: 15),
           ),
-      ],
+          if (description != null)
+            Text(
+              description!,
+              softWrap: true,
+              style: TextStyle(color: Colors.white,fontSize: 12),
+
+            ),
+        ],
+      ),
     );
   }
 }

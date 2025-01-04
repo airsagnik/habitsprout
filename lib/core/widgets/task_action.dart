@@ -15,10 +15,10 @@ class TaskAction extends StatelessWidget {
   BorderRadiusGeometry getBorderRadius() {
     if (applyBorderRadiusOnLeft) {
       return BorderRadius.only(
-          topLeft: Radius.circular(10), bottomLeft: Radius.circular(10));
+          topLeft: Radius.circular(12), bottomLeft: Radius.circular(12));
     } else {
       return BorderRadius.only(
-          topRight: Radius.circular(10), bottomRight: Radius.circular(10));
+          topRight: Radius.circular(12), bottomRight: Radius.circular(12));
     }
   }
 
@@ -29,9 +29,16 @@ class TaskAction extends StatelessWidget {
         onPressed.call();
       },
       child: Container(
-        decoration:
-            BoxDecoration(color: color, borderRadius: getBorderRadius()),
-        child: Padding(padding: EdgeInsets.all(10), child: child),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: getBorderRadius(),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: CircleAvatar(
+            backgroundColor: Colors.orange.shade800,
+              child: child),
+        ),
       ),
     );
   }
