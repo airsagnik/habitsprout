@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitsprout/core/widgets/bottom_nav_bar.dart';
 
 import '../widgets/habit_card.dart';
 

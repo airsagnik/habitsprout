@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitsprout/add_habbit/widgets/empty_page_with_nav_bar.dart';
 import 'package:habitsprout/habits/screens/habit_screen.dart';
 import 'package:habitsprout/todo/screens/todo_screen.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: TaskAdditionForm(),
+      home: MainScreen(),
     );
   }
 }

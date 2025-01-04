@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/todo/widgets/todo_card.dart';
 
+import '../../core/widgets/bottom_nav_bar.dart';
+
 class TodoScreen extends StatelessWidget {
   const TodoScreen({super.key});
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart.';
-
 class HabitNatureSelector extends StatelessWidget {
   final String label;
   final IconData icon;
