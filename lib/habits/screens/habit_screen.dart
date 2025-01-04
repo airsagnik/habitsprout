@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habitsprout/core/task_manager/habit_manager.dart';
 import 'package:habitsprout/core/widgets/bottom_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/habit_card.dart';
 
@@ -10,12 +12,29 @@ class HabitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TODO'),
+        title: Text('Habits'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pushNamed(
+                "/addhabit",
+              );
+            },
+            child: Text("add habit"),
+          )
+        ],
       ),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) => HabitCard(),
-        itemCount: 10,
+      body: Consumer<HabitManager>(
+        builder: (context, data, child) => data.habits.isEmpty
+            ? Center(
+                child: Text("No habits added"),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    HabitCard(model: data.habits[index]),
+                itemCount: data.habits.length,
+              ),
       ),
     );
   }

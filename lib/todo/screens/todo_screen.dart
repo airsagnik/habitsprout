@@ -18,7 +18,7 @@ class TodoScreen extends StatelessWidget {
           TextButton(
             onPressed: () {
               Navigator.of(context, rootNavigator: true).pushNamed(
-                "/addtask",
+                "/addtodo",
               );
             },
             child: Text("add Todo"),
@@ -32,8 +32,10 @@ class TodoScreen extends StatelessWidget {
               )
             : ListView.builder(
                 shrinkWrap: true,
-                itemBuilder: (context, index) => TodoCard(),
-                itemCount: 10,
+                itemBuilder: (context, index) => TodoCard(
+                  model: data.todo[index],
+                ),
+                itemCount: data.todo.length,
               ),
       ),
     );

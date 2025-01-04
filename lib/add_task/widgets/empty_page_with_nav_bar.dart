@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitsprout/habits/screens/habit_screen.dart';
 import 'package:habitsprout/todo/screens/todo_screen.dart';
 
-import '../add_form.dart';
+import '../habit_addition_form.dart';
 
 class MainScreen extends StatefulWidget {
   final int? index;

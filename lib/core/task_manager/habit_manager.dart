@@ -6,7 +6,10 @@ class HabitManager extends ChangeNotifier {
 
   void fetchHabits() {}
 
-  void addHabits() {}
+  void addHabits(HabitModel model) {
+    habits.add(model);
+    notifyListeners();
+  }
 
   void dismissHabit() {}
 }

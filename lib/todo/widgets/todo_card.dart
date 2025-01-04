@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/core/widgets/task_action.dart';
 import 'package:habitsprout/core/widgets/task_descriptor.dart';
+import 'package:habitsprout/todo/model/todo_model.dart';
 
 class TodoCard extends StatelessWidget {
-  const TodoCard({super.key});
+  final TodoModel model;
+  const TodoCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +22,14 @@ class TodoCard extends StatelessWidget {
                 child: Icon(Icons.square),
                 onPressed: () {},
               ),
-              SizedBox(width: 5,),
+              SizedBox(
+                width: 5,
+              ),
               Expanded(
                 child: TaskDescriptor(
-                  todoId: "abc",
-                  title: ""
-                      "Balle Balle",
-                  description:
-                      'jnjnjnjncjnjncnnjcdnjnwdjncjnsdjncjsdcjjncnjncdnjnjjksnkjnscnasknaskncaskncnkascnkasnnknsknckasnkasn',
-                ),
+                    todoId: "aaa",
+                    title: model.title,
+                    description: model.description),
               ),
             ],
           ),

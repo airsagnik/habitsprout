@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart.';
+import 'package:habitsprout/habits/model/habit_model.dart';
 
 import '../../core/widgets/task_action.dart';
 import '../../core/widgets/task_descriptor.dart';
 
 class HabitCard extends StatelessWidget {
-  const HabitCard({super.key});
+  final HabitModel model;
+
+  const HabitCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +29,9 @@ class HabitCard extends StatelessWidget {
               ),
               Expanded(
                 child: TaskDescriptor(
-                  todoId: "abc",
-                  title: ""
-                      "Balle Balle",
-                  description:
-                      'jnjnjnjncjnjncnnjcdnjnwdjncjnsdjncjsdcjjncnjncdnjnjjksnkjnscnasknaskncaskncnkascnkasnnknsknckasnkasn',
-                ),
+                    todoId: 'aaa',
+                    title: model.title,
+                    description: model.description),
               ),
               TaskAction(
                 color: Colors.yellow,
