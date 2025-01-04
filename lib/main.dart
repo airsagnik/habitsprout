@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habitsprout/add_habbit/widgets/empty_page_with_nav_bar.dart';
+import 'package:habitsprout/core/task_manager/habit_manager.dart';
+import 'package:habitsprout/core/task_manager/reward_manager.dart';
+import 'package:habitsprout/core/task_manager/todo_manager.dart';
 import 'package:habitsprout/habits/screens/habit_screen.dart';
 import 'package:habitsprout/todo/screens/todo_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'add_habbit/add_form.dart';
 
@@ -15,61 +19,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: MainScreen(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MultiProvider(
+      providers: [
+        Provider<HabitManager>(create: (_) => HabitManager()),
+        Provider<RewardManager>(create: (_) => RewardManager()),
+        Provider<TodoManager>(create: (_) => TodoManager()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
         ),
+        home: MainScreen(),
+        routes: {'/addtask': (context) => TaskAdditionForm()},
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
