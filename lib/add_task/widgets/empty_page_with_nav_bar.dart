@@ -34,23 +34,14 @@ class _MainScreenState extends State<MainScreen> {
   // Navigate and replace current route
   void _navigateToPage(int index) {
     if (_currentIndex != index) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MainScreen(
-            index: index,
-          ),
-        ),
-      );
-    }
-  }
-
-  void _onTap(int index) {
-    if (_currentIndex != index) {
       setState(() {
         _currentIndex = index;
       });
     }
+  }
+
+  void _onTap(int index) {
+    if (_currentIndex != index) {}
   }
 
   // Bottom Navigation Bar pages

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:habitsprout/core/task_manager/auth_manager.dart';
 import 'package:habitsprout/core/widgets/appbar.dart';
 import 'package:habitsprout/profile/widgets/rewards_display.dart';
 import 'package:habitsprout/rewards/widgets/coin_display.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -56,11 +58,17 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
+            ElevatedButton(
+                onPressed: () async {
+                  final auth =
+                      Provider.of<Authentication>(context, listen: false);
+                  await auth.signOut();
+                },
+                child: Text('Sign out')),
             Divider(
               thickness: 5,
             ),
             Expanded(child: RewardsDisplay())
-
             // Rewards Section
           ],
         ),

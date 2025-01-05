@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "100309963034",
+    "project_id": "habitsprout-b0f69",
+    "storage_bucket": "habitsprout-b0f69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100309963034:android:f8777bcc2e791ce6829ca3",
+        "android_client_info": {
+          "package_name": "com.example.habitsprout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLmmbt3MYFcl7S2XJ_pdL6G5CdGuCOX0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
