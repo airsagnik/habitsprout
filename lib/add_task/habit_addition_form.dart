@@ -37,6 +37,7 @@ class _HabitAdditionFormState extends State<HabitAdditionForm> {
         difficultyLevel: difficultyType);
 
     Provider.of<HabitManager>(context, listen: false).addHabits(model);
+    Navigator.of(context).pop();
   }
 
   @override

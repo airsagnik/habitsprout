@@ -34,6 +34,8 @@ class _TodoAdditionFormState extends State<TodoAdditionForm> {
         difficultyLevel: difficultyType);
 
     Provider.of<TodoManager>(context, listen: false).addTodo(model);
+    Navigator.of(context).pop();
+
   }
 
   @override

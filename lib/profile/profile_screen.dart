@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:habitsprout/core/task_manager/auth_manager.dart';
 import 'package:habitsprout/core/widgets/appbar.dart';
@@ -11,7 +12,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar('Profile', () {}, CoinDisplay()),
+      appBar: getAppBar('Profile', null, CoinDisplay()),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -36,7 +37,8 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(height: 16),
                     // Email
                     Text(
-                      'john.doe@example.com', // Replace with user's email
+                      FirebaseAuth.instance.currentUser?.email ??
+                          '', // Replace with user's email
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -44,13 +46,6 @@ class ProfilePage extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     // Name
-                    Text(
-                      'John Doe', // Replace with user's name
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
                   ],
                 ),
               ),

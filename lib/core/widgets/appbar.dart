@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar getAppBar(String title, Function addAction, Widget? coinDisplay) {
+AppBar getAppBar(String title, Function? addAction, Widget? coinDisplay) {
   return AppBar(
     iconTheme: IconThemeData(color: Colors.white),
     leadingWidth: 25,
@@ -27,14 +27,15 @@ AppBar getAppBar(String title, Function addAction, Widget? coinDisplay) {
       ),
     ),
     actions: [
-      IconButton(
-          icon: const Icon(
-            Icons.add_circle_outline,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            addAction.call();
-          }),
+      if (addAction != null)
+        IconButton(
+            icon: const Icon(
+              Icons.add_circle_outline,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              addAction?.call();
+            }),
       if (coinDisplay != null) coinDisplay,
     ],
     elevation: 8.0, // Adds a shadow below the app bar

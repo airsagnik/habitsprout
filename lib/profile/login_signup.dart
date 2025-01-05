@@ -16,6 +16,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   ValueNotifier<bool> showLoader = ValueNotifier<bool>(false);
 
@@ -148,7 +149,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       child: Text(
                         isLogin ? "Login" : "Sign Up",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),

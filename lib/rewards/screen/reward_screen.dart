@@ -13,7 +13,7 @@ class PokemonStorePage extends StatelessWidget {
     final pokemonData =
         Provider.of<RewardManager>(context, listen: false).reward;
     return Scaffold(
-      appBar: getAppBar('Rewards', () {}, CoinDisplay()),
+      appBar: getAppBar('Rewards', null, CoinDisplay()),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
