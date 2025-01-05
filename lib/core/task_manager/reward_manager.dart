@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:habitsprout/core/models/core_models.dart';
 import 'package:habitsprout/habits/model/habit_model.dart';
@@ -7,6 +9,7 @@ import '../../rewards/model/reward_model.dart';
 
 class RewardManager extends ChangeNotifier {
   double habitoCoins = 0;
+  bool isFirstLaunch = true;
   final List<Map<String, dynamic>> pokemonData = [
     {
       "id": 1,
@@ -165,27 +168,55 @@ class RewardManager extends ChangeNotifier {
     }
   }
 
+  Future<void> fetchPoints() async {
+    if (!isFirstLaunch) {
+      return;
+    }
+    final points = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .get();
+
+    final datamap = points.data();
+    habitoCoins = datamap?['points'] ?? 0.0;
+    notifyListeners();
+    isFirstLaunch = false;
+  }
+
+  Future<void> updatePoints() async {
+    await FirebaseFirestore.instance
+        .collection('users') // Replace with your collection name
+        .doc(FirebaseAuth.instance.currentUser?.uid) // User document ID
+        .set({
+      'points': habitoCoins,
+    }, SetOptions(merge: true));
+  }
+
   void addPositiveHabitCoins(HabitModel habit) {
     habitoCoins =
         habitoCoins + (5 * getDifficultyOffset(habit.difficultyLevel));
+    updatePoints();
     notifyListeners();
   }
 
   void removeNegativeHabitCoins(HabitModel habit) {
     habitoCoins =
         habitoCoins - (5 * getDifficultyOffset(habit.difficultyLevel));
+    updatePoints();
     notifyListeners();
   }
 
   void todoCompletePoints(TodoModel model) {
     habitoCoins =
         habitoCoins + (10 * getDifficultyOffset(model.difficultyLevel));
+    updatePoints();
     notifyListeners();
   }
 
   void collectRewards(RewardModel reward) {
     collectedReward.add(reward);
     habitoCoins = habitoCoins - reward.price;
+    updatePoints();
     notifyListeners();
   }
 

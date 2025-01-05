@@ -5,8 +5,19 @@ enum HabitType {
   negative,
 }
 
+extension HabitTypeConverter on String {
+  HabitType get habitType {
+    switch (this) {
+      case 'positive':
+        return HabitType.positive;
+      default:
+        return HabitType.negative;
+    }
+  }
+}
 
 class HabitModel {
+  String? id;
   final String title;
   final String? description;
   final HabitType habitType;
@@ -14,6 +25,7 @@ class HabitModel {
 
   HabitModel(
       {required this.title,
+      this.id,
       this.habitType = HabitType.positive,
       this.difficultyLevel = DifficultyLevel.easy,
       required this.description});

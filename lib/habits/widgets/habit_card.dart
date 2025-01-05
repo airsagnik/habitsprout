@@ -29,14 +29,14 @@ class HabitCard extends StatelessWidget {
                 ),
                 onPressed: () {
                   if (model.habitType == HabitType.positive) {
-                    Provider.of<RewardManager>(context,listen: false)
+                    Provider.of<RewardManager>(context, listen: false)
                         .addPositiveHabitCoins(model);
                   }
                 },
               ),
               Expanded(
                 child: TaskDescriptor(
-                    todoId: 'aaa',
+                    todoId: model.id ?? 'abc',
                     title: model.title,
                     description: model.description),
               ),
@@ -48,7 +48,7 @@ class HabitCard extends StatelessWidget {
                 ),
                 onPressed: () {
                   if (model.habitType == HabitType.negative) {
-                    Provider.of<RewardManager>(context,listen: false)
+                    Provider.of<RewardManager>(context, listen: false)
                         .removeNegativeHabitCoins(model);
                   }
                 },

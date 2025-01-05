@@ -27,7 +27,7 @@ class _HabitAdditionFormState extends State<HabitAdditionForm> {
   final ValueNotifier<DifficultyLevel> difficulty =
       ValueNotifier<DifficultyLevel>(DifficultyLevel.easy);
 
-  void onSubmit() {
+  void onSubmit() async {
     final habitNatureType = habitNature.value;
     final difficultyType = difficulty.value;
     final model = HabitModel(
@@ -35,8 +35,9 @@ class _HabitAdditionFormState extends State<HabitAdditionForm> {
         description: notesController.text,
         habitType: habitNatureType,
         difficultyLevel: difficultyType);
-
-    Provider.of<HabitManager>(context, listen: false).addHabits(model);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please wait while we update the habit')));
+    await Provider.of<HabitManager>(context, listen: false).addHabits(model);
     Navigator.of(context).pop();
   }
 
@@ -126,7 +127,8 @@ class _HabitAdditionFormState extends State<HabitAdditionForm> {
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black,
-                ),              ),
+                ),
+              ),
               SizedBox(
                 height: 16,
               ),

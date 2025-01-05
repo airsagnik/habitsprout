@@ -1,6 +1,7 @@
 import 'package:habitsprout/core/models/core_models.dart';
 
 class TodoModel {
+  String? id;
   String title;
   String? description;
   DifficultyLevel difficultyLevel;
@@ -10,6 +11,7 @@ class TodoModel {
   TodoModel(
       {required this.title,
       this.description,
+      this.id,
       this.dateTime,
       this.dueDate,
       this.difficultyLevel = DifficultyLevel.easy});

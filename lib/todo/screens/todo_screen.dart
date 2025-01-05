@@ -13,6 +13,8 @@ class TodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<TodoManager>(context, listen: false).fetchTodo();
+
     return Scaffold(
       appBar: getAppBar(
         'Add Todo',
@@ -22,20 +24,28 @@ class TodoScreen extends StatelessWidget {
         CoinDisplay(),
       ),
       body: Consumer<TodoManager>(
-        builder: (context, data, child) => data.todo.isEmpty
+        builder: (context, data, child) => data.isLoading
             ? Center(
-                child: Text("No todo added"),
-              )
-            : Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => TodoCard(
-                    model: data.todo[index],
-                  ),
-                  itemCount: data.todo.length,
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: CircularProgressIndicator(),
                 ),
-            ),
+              )
+            : data.todo.isEmpty
+                ? Center(
+                    child: Text("No todo added"),
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => TodoCard(
+                        model: data.todo[index],
+                      ),
+                      itemCount: data.todo.length,
+                    ),
+                  ),
       ),
     );
   }

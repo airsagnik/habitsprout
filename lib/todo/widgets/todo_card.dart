@@ -33,7 +33,7 @@ class TodoCard extends StatelessWidget {
               ),
               Expanded(
                 child: TaskDescriptor(
-                    todoId: "aaa",
+                    todoId: model.id ?? 'abc',
                     title: model.title,
                     description: model.description),
               ),

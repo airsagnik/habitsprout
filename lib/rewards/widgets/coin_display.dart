@@ -6,7 +6,9 @@ class CoinDisplay extends StatelessWidget {
   const CoinDisplay({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
+    Provider.of<RewardManager>(context,listen: false).fetchPoints();
     return Consumer<RewardManager>(
       builder: (context, data, child) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

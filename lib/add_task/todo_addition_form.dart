@@ -25,7 +25,7 @@ class _TodoAdditionFormState extends State<TodoAdditionForm> {
   final ValueNotifier<DifficultyLevel> difficulty =
       ValueNotifier<DifficultyLevel>(DifficultyLevel.easy);
 
-  void onSubmit() {
+  Future<void> onSubmit() async {
     final difficultyType = difficulty.value;
     final model = TodoModel(
         title: titleController.text,
@@ -33,9 +33,10 @@ class _TodoAdditionFormState extends State<TodoAdditionForm> {
         dueDate: DateTime.tryParse(dateTimeController.text),
         difficultyLevel: difficultyType);
 
-    Provider.of<TodoManager>(context, listen: false).addTodo(model);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please wait while we update the todo')));
+    await Provider.of<TodoManager>(context, listen: false).addTodo(model);
     Navigator.of(context).pop();
-
   }
 
   @override
