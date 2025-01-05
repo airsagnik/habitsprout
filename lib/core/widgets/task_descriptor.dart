@@ -10,6 +10,7 @@ class TaskDescriptor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5),
       color: Colors.black54,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -18,15 +19,17 @@ class TaskDescriptor extends StatelessWidget {
           Text(
             title,
             softWrap: true,
-            style: TextStyle(color: Colors.white,fontSize: 15),
-
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           if (description != null)
             Text(
               description!,
               softWrap: true,
-              style: TextStyle(color: Colors.white,fontSize: 12),
-
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white54,
+              ),
             ),
         ],
       ),

@@ -26,13 +26,16 @@ class TodoScreen extends StatelessWidget {
             ? Center(
                 child: Text("No todo added"),
               )
-            : ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) => TodoCard(
-                  model: data.todo[index],
+            : Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => TodoCard(
+                    model: data.todo[index],
+                  ),
+                  itemCount: data.todo.length,
                 ),
-                itemCount: data.todo.length,
-              ),
+            ),
       ),
     );
   }

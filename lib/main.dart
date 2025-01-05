@@ -4,8 +4,6 @@ import 'package:habitsprout/add_task/widgets/empty_page_with_nav_bar.dart';
 import 'package:habitsprout/core/task_manager/habit_manager.dart';
 import 'package:habitsprout/core/task_manager/reward_manager.dart';
 import 'package:habitsprout/core/task_manager/todo_manager.dart';
-import 'package:habitsprout/habits/screens/habit_screen.dart';
-import 'package:habitsprout/todo/screens/todo_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'add_task/habit_addition_form.dart';

@@ -21,11 +21,14 @@ class HabitScreen extends StatelessWidget {
             ? Center(
                 child: Text("No habits added"),
               )
-            : ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) =>
-                    HabitCard(model: data.habits[index]),
-                itemCount: data.habits.length,
+            : Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) =>
+                      HabitCard(model: data.habits[index]),
+                  itemCount: data.habits.length,
+                ),
               ),
       ),
     );

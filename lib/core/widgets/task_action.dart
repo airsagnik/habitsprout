@@ -30,14 +30,27 @@ class TaskAction extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Colors.orange, Colors.deepOrange],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           color: color,
           borderRadius: getBorderRadius(),
         ),
         child: Padding(
           padding: EdgeInsets.all(10),
-          child: CircleAvatar(
-            backgroundColor: Colors.orange.shade800,
-              child: child),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.orange.shade300,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: child
+
+          ),
         ),
       ),
     );

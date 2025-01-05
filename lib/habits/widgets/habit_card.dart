@@ -43,7 +43,7 @@ class HabitCard extends StatelessWidget {
               TaskAction(
                 color: Colors.orangeAccent,
                 child: Icon(
-                  Icons.home_mini_sharp,
+                  Icons.remove,
                   color: Colors.white,
                 ),
                 onPressed: () {
